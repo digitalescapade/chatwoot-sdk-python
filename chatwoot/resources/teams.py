@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Any
 
 from chatwoot.resources._base import AsyncBaseResource, BaseResource
@@ -12,7 +13,7 @@ from chatwoot.types.team import Team
 class TeamAgentsResource(BaseResource):
     """Nested resource for managing team agents."""
 
-    def list(self, account_id: int, team_id: int) -> list[Agent]:
+    def list(self, account_id: int, team_id: int) -> builtins.list[Agent]:
         """List agents in the team.
 
         Args:
@@ -32,7 +33,7 @@ class TeamAgentsResource(BaseResource):
             return [Agent(**item) for item in response]
         return []
 
-    def add(self, account_id: int, team_id: int, agent_ids: list[int]) -> None:
+    def add(self, account_id: int, team_id: int, agent_ids: builtins.list[int]) -> None:
         """Add agents to the team.
 
         Args:
@@ -53,7 +54,9 @@ class TeamAgentsResource(BaseResource):
             json=data,
         )
 
-    def remove(self, account_id: int, team_id: int, agent_ids: list[int]) -> None:
+    def remove(
+        self, account_id: int, team_id: int, agent_ids: builtins.list[int]
+    ) -> None:
         """Remove agents from the team.
 
         Args:
@@ -78,7 +81,7 @@ class TeamAgentsResource(BaseResource):
 class AsyncTeamAgentsResource(AsyncBaseResource):
     """Async nested resource for managing team agents."""
 
-    async def list(self, account_id: int, team_id: int) -> list[Agent]:
+    async def list(self, account_id: int, team_id: int) -> builtins.list[Agent]:
         """List agents in the team (async).
 
         Args:
@@ -95,7 +98,9 @@ class AsyncTeamAgentsResource(AsyncBaseResource):
             return [Agent(**item) for item in response]
         return []
 
-    async def add(self, account_id: int, team_id: int, agent_ids: list[int]) -> None:
+    async def add(
+        self, account_id: int, team_id: int, agent_ids: builtins.list[int]
+    ) -> None:
         """Add agents to the team (async).
 
         Args:
@@ -109,7 +114,9 @@ class AsyncTeamAgentsResource(AsyncBaseResource):
             json=data,
         )
 
-    async def remove(self, account_id: int, team_id: int, agent_ids: list[int]) -> None:
+    async def remove(
+        self, account_id: int, team_id: int, agent_ids: builtins.list[int]
+    ) -> None:
         """Remove agents from the team (async).
 
         Args:
@@ -132,7 +139,7 @@ class TeamsResource(BaseResource):
         super().__init__(http)
         self.agents = TeamAgentsResource(http)
 
-    def list(self, account_id: int) -> list[Team]:
+    def list(self, account_id: int) -> builtins.list[Team]:
         """List all teams in the account.
 
         Args:
@@ -246,7 +253,7 @@ class AsyncTeamsResource(AsyncBaseResource):
         super().__init__(http)
         self.agents = AsyncTeamAgentsResource(http)
 
-    async def list(self, account_id: int) -> list[Team]:
+    async def list(self, account_id: int) -> builtins.list[Team]:
         """List all teams in the account (async).
 
         Args:

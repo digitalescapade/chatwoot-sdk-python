@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Any
 
 from chatwoot.resources._base import AsyncBaseResource, BaseResource
@@ -11,7 +12,7 @@ from chatwoot.types.message import Message
 class MessagesResource(BaseResource):
     """Synchronous messages resource."""
 
-    def list(self, account_id: int, conversation_id: int) -> list[Message]:
+    def list(self, account_id: int, conversation_id: int) -> builtins.list[Message]:
         """List messages in a conversation.
 
         Args:
@@ -40,7 +41,7 @@ class MessagesResource(BaseResource):
         content: str,
         message_type: str = "outgoing",
         private: bool = False,
-        attachments: list[str] | None = None,
+        attachments: builtins.list[str] | None = None,
         **kwargs: Any,
     ) -> Message:
         """Create/send a message in a conversation.
@@ -126,7 +127,9 @@ class MessagesResource(BaseResource):
 class AsyncMessagesResource(AsyncBaseResource):
     """Asynchronous messages resource."""
 
-    async def list(self, account_id: int, conversation_id: int) -> list[Message]:
+    async def list(
+        self, account_id: int, conversation_id: int
+    ) -> builtins.list[Message]:
         """List messages in a conversation (async).
 
         Args:
@@ -150,7 +153,7 @@ class AsyncMessagesResource(AsyncBaseResource):
         content: str,
         message_type: str = "outgoing",
         private: bool = False,
-        attachments: list[str] | None = None,
+        attachments: builtins.list[str] | None = None,
         **kwargs: Any,
     ) -> Message:
         """Create/send a message in a conversation (async).

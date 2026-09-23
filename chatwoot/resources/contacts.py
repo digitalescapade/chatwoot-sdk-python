@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Any
 
 from chatwoot.resources._base import AsyncBaseResource, BaseResource
@@ -12,7 +13,7 @@ from chatwoot.types.conversation import Conversation
 class ContactLabelsResource(BaseResource):
     """Nested resource for managing contact labels."""
 
-    def list(self, account_id: int, contact_id: int) -> list[str]:
+    def list(self, account_id: int, contact_id: int) -> builtins.list[str]:
         """List contact labels.
 
         Args:
@@ -32,7 +33,9 @@ class ContactLabelsResource(BaseResource):
             return response["payload"]
         return response if isinstance(response, list) else []
 
-    def add(self, account_id: int, contact_id: int, labels: list[str]) -> list[str]:
+    def add(
+        self, account_id: int, contact_id: int, labels: builtins.list[str]
+    ) -> builtins.list[str]:
         """Add/replace labels on contact.
 
         IMPORTANT: This overwrites existing labels, does not append.
@@ -65,7 +68,7 @@ class ContactLabelsResource(BaseResource):
 class AsyncContactLabelsResource(AsyncBaseResource):
     """Async nested resource for managing contact labels."""
 
-    async def list(self, account_id: int, contact_id: int) -> list[str]:
+    async def list(self, account_id: int, contact_id: int) -> builtins.list[str]:
         """List contact labels (async).
 
         Args:
@@ -83,8 +86,8 @@ class AsyncContactLabelsResource(AsyncBaseResource):
         return response if isinstance(response, list) else []
 
     async def add(
-        self, account_id: int, contact_id: int, labels: list[str]
-    ) -> list[str]:
+        self, account_id: int, contact_id: int, labels: builtins.list[str]
+    ) -> builtins.list[str]:
         """Add/replace labels on contact (async).
 
         IMPORTANT: This overwrites existing labels, does not append.
@@ -115,7 +118,7 @@ class ContactsResource(BaseResource):
         super().__init__(http)
         self.labels = ContactLabelsResource(http)
 
-    def list(self, account_id: int, page: int = 1) -> list[Contact]:
+    def list(self, account_id: int, page: int = 1) -> builtins.list[Contact]:
         """List contacts with pagination.
 
         Args:
@@ -138,7 +141,7 @@ class ContactsResource(BaseResource):
             return [Contact(**item) for item in response]
         return []
 
-    def search(self, account_id: int, query: str) -> list[Contact]:
+    def search(self, account_id: int, query: str) -> builtins.list[Contact]:
         """Search contacts.
 
         Args:
@@ -248,7 +251,9 @@ class ContactsResource(BaseResource):
         """
         self._http.delete(f"/api/v1/accounts/{account_id}/contacts/{contact_id}")
 
-    def conversations(self, account_id: int, contact_id: int) -> list[Conversation]:
+    def conversations(
+        self, account_id: int, contact_id: int
+    ) -> builtins.list[Conversation]:
         """Get contact conversations.
 
         Args:
@@ -298,7 +303,9 @@ class ContactsResource(BaseResource):
         )
         return Contact(**response)
 
-    def contactable_inboxes(self, account_id: int, contact_id: int) -> list[dict]:
+    def contactable_inboxes(
+        self, account_id: int, contact_id: int
+    ) -> builtins.list[dict]:
         """Get inboxes that a contact can be reached through.
 
         Args:
@@ -329,7 +336,7 @@ class AsyncContactsResource(AsyncBaseResource):
         super().__init__(http)
         self.labels = AsyncContactLabelsResource(http)
 
-    async def list(self, account_id: int, page: int = 1) -> list[Contact]:
+    async def list(self, account_id: int, page: int = 1) -> builtins.list[Contact]:
         """List contacts with pagination (async).
 
         Args:
@@ -347,7 +354,7 @@ class AsyncContactsResource(AsyncBaseResource):
             return [Contact(**item) for item in response]
         return []
 
-    async def search(self, account_id: int, query: str) -> list[Contact]:
+    async def search(self, account_id: int, query: str) -> builtins.list[Contact]:
         """Search contacts (async).
 
         Args:
@@ -435,7 +442,7 @@ class AsyncContactsResource(AsyncBaseResource):
 
     async def conversations(
         self, account_id: int, contact_id: int
-    ) -> list[Conversation]:
+    ) -> builtins.list[Conversation]:
         """Get contact conversations (async).
 
         Args:
@@ -475,7 +482,9 @@ class AsyncContactsResource(AsyncBaseResource):
         )
         return Contact(**response)
 
-    async def contactable_inboxes(self, account_id: int, contact_id: int) -> list[dict]:
+    async def contactable_inboxes(
+        self, account_id: int, contact_id: int
+    ) -> builtins.list[dict]:
         """Get inboxes that a contact can be reached through (async).
 
         Args:

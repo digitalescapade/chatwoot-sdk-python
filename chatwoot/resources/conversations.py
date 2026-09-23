@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Any
 
 from chatwoot.resources._base import AsyncBaseResource, BaseResource
@@ -11,7 +12,7 @@ from chatwoot.types.conversation import Conversation, ConversationToggleStatusRe
 class ConversationLabelsResource(BaseResource):
     """Nested resource for managing conversation labels."""
 
-    def list(self, account_id: int, conversation_id: int) -> list[str]:
+    def list(self, account_id: int, conversation_id: int) -> builtins.list[str]:
         """List conversation labels.
 
         Args:
@@ -35,8 +36,8 @@ class ConversationLabelsResource(BaseResource):
         return response if isinstance(response, list) else []
 
     def add(
-        self, account_id: int, conversation_id: int, labels: list[str]
-    ) -> list[str]:
+        self, account_id: int, conversation_id: int, labels: builtins.list[str]
+    ) -> builtins.list[str]:
         """Add/replace labels on conversation.
 
         IMPORTANT: This overwrites existing labels, does not append.
@@ -69,7 +70,7 @@ class ConversationLabelsResource(BaseResource):
 class AsyncConversationLabelsResource(AsyncBaseResource):
     """Async nested resource for managing conversation labels."""
 
-    async def list(self, account_id: int, conversation_id: int) -> list[str]:
+    async def list(self, account_id: int, conversation_id: int) -> builtins.list[str]:
         """List conversation labels (async).
 
         Args:
@@ -87,8 +88,8 @@ class AsyncConversationLabelsResource(AsyncBaseResource):
         return response if isinstance(response, list) else []
 
     async def add(
-        self, account_id: int, conversation_id: int, labels: list[str]
-    ) -> list[str]:
+        self, account_id: int, conversation_id: int, labels: builtins.list[str]
+    ) -> builtins.list[str]:
         """Add/replace labels on conversation (async).
 
         IMPORTANT: This overwrites existing labels, does not append.
@@ -127,9 +128,9 @@ class ConversationsResource(BaseResource):
         page: int = 1,
         inbox_id: int | None = None,
         team_id: int | None = None,
-        labels: list[str] | None = None,
+        labels: builtins.list[str] | None = None,
         q: str | None = None,
-    ) -> list[Conversation]:
+    ) -> builtins.list[Conversation]:
         """List conversations with filters.
 
         Args:
@@ -380,9 +381,9 @@ class AsyncConversationsResource(AsyncBaseResource):
         page: int = 1,
         inbox_id: int | None = None,
         team_id: int | None = None,
-        labels: list[str] | None = None,
+        labels: builtins.list[str] | None = None,
         q: str | None = None,
-    ) -> list[Conversation]:
+    ) -> builtins.list[Conversation]:
         """List conversations with filters (async).
 
         Args:

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Any
 
 from chatwoot.resources._base import AsyncBaseResource, BaseResource
@@ -12,7 +13,7 @@ from chatwoot.types.inbox import Inbox
 class InboxMembersResource(BaseResource):
     """Nested resource for managing inbox agents."""
 
-    def list(self, account_id: int, inbox_id: int) -> list[Agent]:
+    def list(self, account_id: int, inbox_id: int) -> builtins.list[Agent]:
         """List agents in an inbox.
 
         Args:
@@ -34,7 +35,9 @@ class InboxMembersResource(BaseResource):
             return [Agent(**item) for item in response["payload"]]
         return []
 
-    def add(self, account_id: int, inbox_id: int, agent_ids: list[int]) -> list[Agent]:
+    def add(
+        self, account_id: int, inbox_id: int, agent_ids: builtins.list[int]
+    ) -> builtins.list[Agent]:
         """Add agents to an inbox.
 
         Args:
@@ -62,8 +65,8 @@ class InboxMembersResource(BaseResource):
         return []
 
     def update(
-        self, account_id: int, inbox_id: int, agent_ids: list[int]
-    ) -> list[Agent]:
+        self, account_id: int, inbox_id: int, agent_ids: builtins.list[int]
+    ) -> builtins.list[Agent]:
         """Replace all agents in an inbox (removes agents not in the list).
 
         Args:
@@ -90,7 +93,9 @@ class InboxMembersResource(BaseResource):
             return [Agent(**item) for item in response["payload"]]
         return []
 
-    def remove(self, account_id: int, inbox_id: int, agent_ids: list[int]) -> None:
+    def remove(
+        self, account_id: int, inbox_id: int, agent_ids: builtins.list[int]
+    ) -> None:
         """Remove agents from an inbox.
 
         Args:
@@ -115,7 +120,7 @@ class InboxMembersResource(BaseResource):
 class AsyncInboxMembersResource(AsyncBaseResource):
     """Async nested resource for managing inbox agents."""
 
-    async def list(self, account_id: int, inbox_id: int) -> list[Agent]:
+    async def list(self, account_id: int, inbox_id: int) -> builtins.list[Agent]:
         """List agents in an inbox (async).
 
         Args:
@@ -133,8 +138,8 @@ class AsyncInboxMembersResource(AsyncBaseResource):
         return []
 
     async def add(
-        self, account_id: int, inbox_id: int, agent_ids: list[int]
-    ) -> list[Agent]:
+        self, account_id: int, inbox_id: int, agent_ids: builtins.list[int]
+    ) -> builtins.list[Agent]:
         """Add agents to an inbox (async).
 
         Args:
@@ -155,8 +160,8 @@ class AsyncInboxMembersResource(AsyncBaseResource):
         return []
 
     async def update(
-        self, account_id: int, inbox_id: int, agent_ids: list[int]
-    ) -> list[Agent]:
+        self, account_id: int, inbox_id: int, agent_ids: builtins.list[int]
+    ) -> builtins.list[Agent]:
         """Replace all agents in an inbox (async).
 
         Args:
@@ -177,7 +182,7 @@ class AsyncInboxMembersResource(AsyncBaseResource):
         return []
 
     async def remove(
-        self, account_id: int, inbox_id: int, agent_ids: list[int]
+        self, account_id: int, inbox_id: int, agent_ids: builtins.list[int]
     ) -> None:
         """Remove agents from an inbox (async).
 
@@ -201,7 +206,7 @@ class InboxesResource(BaseResource):
         super().__init__(http)
         self.agents = InboxMembersResource(http)
 
-    def list(self, account_id: int) -> list[Inbox]:
+    def list(self, account_id: int) -> builtins.list[Inbox]:
         """List all inboxes in the account.
 
         Args:
@@ -361,7 +366,7 @@ class AsyncInboxesResource(AsyncBaseResource):
         super().__init__(http)
         self.agents = AsyncInboxMembersResource(http)
 
-    async def list(self, account_id: int) -> list[Inbox]:
+    async def list(self, account_id: int) -> builtins.list[Inbox]:
         """List all inboxes in the account (async).
 
         Args:

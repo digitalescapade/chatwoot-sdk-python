@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Any
 
 from chatwoot.resources._base import AsyncBaseResource, BaseResource
@@ -11,7 +12,7 @@ from chatwoot.types.agent import Agent
 class AgentsResource(BaseResource):
     """Synchronous agents resource."""
 
-    def list(self, account_id: int) -> list[Agent]:
+    def list(self, account_id: int) -> builtins.list[Agent]:
         """List all agents in the account.
 
         Args:
@@ -145,7 +146,7 @@ class AgentsResource(BaseResource):
 class AsyncAgentsResource(AsyncBaseResource):
     """Asynchronous agents resource."""
 
-    async def list(self, account_id: int) -> list[Agent]:
+    async def list(self, account_id: int) -> builtins.list[Agent]:
         """List all agents in the account (async).
 
         Args:

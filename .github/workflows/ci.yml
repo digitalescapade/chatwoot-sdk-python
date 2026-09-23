@@ -33,11 +33,14 @@ jobs:
       - name: Format check
         run: uv run ruff format --check .
 
-  # Type checking with `ty` (Astral) is skipped for now.
-  # `ty` is in alpha and incorrectly resolves `list[T]` return annotations
-  # on methods named `list` as a subscript of the method rather than the
-  # built-in — even with `from __future__ import annotations` in place.
-  # Re-enable once this is fixed upstream: https://github.com/astral-sh/ty
+  # Type checking with `ty` (Astral) is skipped until existing diagnostics
+  # are fixed (`uv run ty check .`). Main causes:
+  # - `list[T]` annotations inside resource classes resolve to the class's
+  #   own `list` method, not the built-in. Intentional in ty (matches Python
+  #   name resolution; mypy flags it too): https://github.com/astral-sh/ty/issues/1747
+  #   Use `builtins.list`.
+  # - HTTP client methods return `dict[str, Any] | list[Any]`, which is then
+  #   unpacked with `**` into models.
 
   build:
     name: Build

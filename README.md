@@ -251,7 +251,7 @@ uv run pytest
 uv run pytest --cov=chatwoot --cov-report=term-missing
 
 # Type check
-uvx ty check .
+uv run ty check .
 
 # Lint
 uv run ruff check .
